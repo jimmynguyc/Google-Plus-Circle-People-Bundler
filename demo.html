@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Google Plus Circle Drag Drop Project</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.js"></script>
+		<script src="dragbundler.js"></script>
+		<style type="text/css">
+			body {
+				font: normal 13px arial,sans-serif;
+			}
+			div.people {
+				z-index:1;
+				cursor:move;
+				float: left;
+				background: -o-linear-gradient(top,white,#F4F4F4);
+				background: -webkit-gradient(linear,left top,left bottom,from(white),to(#F4F4F4));
+				background: -moz-linear-gradient(top,white,#F4F4F4);
+				background: -o-linear-gradient(top,white,#F4F4F4);
+				border: 1px solid #DDD;
+				margin: 9px;
+				padding: 4px;
+				position: relative;
+				vertical-align: top;
+				-webkit-border-radius: 2px;
+				-moz-border-radius: 2px;
+				border-radius: 2px;
+				-moz-box-shadow: 0 1px 0 #AAA;
+				-webkit-box-shadow: 0 1px 0 #AAA;
+				box-shadow: 0 1px 0 #AAA;
+			}
+			div.people:hover {
+				-moz-box-shadow: 0 0 5px #888;
+				-webkit-box-shadow: 0 0 5px #888;
+				box-shadow: 0 0 5px #888;
+			}
+			div.people .email {
+				display:none;
+			}
+			div.people.selected,
+			div.people.clone,
+			div.people.clone-master {
+				border: 1px solid #779;
+				background: -o-linear-gradient(top,#63ABF7,#5E99CD);
+				background: -webkit-gradient(linear,left top,left bottom,from(#63ABF7),to(#5E99CD));
+				background: -moz-linear-gradient(top,#63ABF7,#5E99CD);
+				background: -o-linear-gradient(top,#63ABF7,#5E99CD);
+				color: white;
+				-moz-box-shadow: 0 0 3px #497FB8;
+				-webkit-box-shadow: 0 0 3px #497FB8;
+				box-shadow: 0 0 3px #497FB8;
+			}
+			div.people.clone-master {
+				z-index:999;
+			}
+			div.people div.name {
+				font-size: 13px;
+				overflow: hidden;
+				padding: 8px 4px 4px 4px;
+				width: 68px;
+				word-wrap: break-word;
+			}
+			
+			div.people img {
+				float: left;
+			}
+			
+			div.nametag {
+				background:url(https://ssl.gstatic.com/s2/oz/images/sge/nametag.png) no-repeat;
+				width:76px;
+				height:43px;
+				position:absolute;
+				top:5px;
+				left:30px;
+				padding: 15px 0;
+				text-align: center;
+				z-index:1000;
+				color:#000;
+			}
+			div.paperclip {
+				background:url(https://ssl.gstatic.com/s2/oz/images/sge/paperclip.png) no-repeat;
+				width:28px;
+				height:54px;
+				position:absolute;
+				top:-30px;
+				left:55px;
+				z-index:1001;
+			}
+		</style>
+		
+	</head>
+	<body>
+		Select 2 or more ... <br />
+		<div id="peoples">
+			<div class="people"><div class="email">email+1@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #1</div></div>
+			<div class="people"><div class="email">email+2@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #2</div></div>
+			<div class="people"><div class="email">email+3@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #3</div></div>
+			<div class="people"><div class="email">email+4@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #4</div></div>
+			<div class="people"><div class="email">email+5@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #5</div></div>
+			<div class="people"><div class="email">email+6@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #6</div></div>
+			<div class="people"><div class="email">email+7@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #7</div></div>
+			<div class="people"><div class="email">email+8@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #8</div></div>
+			<div class="people"><div class="email">email+9@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #9</div></div>
+			<div class="people"><div class="email">email+10@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #10</div></div>
+			<div class="people"><div class="email">email+11@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #11</div></div>
+			<div class="people"><div class="email">email+12@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #12</div></div>
+			<div class="people"><div class="email">email+13@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #13</div></div>
+			<div class="people"><div class="email">email+14@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #14</div></div>
+			<div class="people"><div class="email">email+15@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #15</div></div>
+			<div class="people"><div class="email">email+16@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #16</div></div>
+			<div class="people"><div class="email">email+17@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #17</div></div>
+			<div class="people"><div class="email">email+18@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #18</div></div>
+			<div class="people"><div class="email">email+19@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #19</div></div>
+			<div class="people"><div class="email">email+20@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #20</div></div>
+		</div>
+	
+	</body>
+</html>
