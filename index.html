@@ -11,6 +11,7 @@
 			}
 			div#peoples {
 				padding:50px;
+				float:left;
 			}
 			div#peoples * {
 				-moz-user-select: -moz-none;
@@ -98,6 +99,27 @@
 				left:55px;
 				z-index:1001;
 			}
+			
+			div#droparea{
+				float:left;
+				border: 1px solid #AAA;
+				width:90%;
+				min-height:200px;
+				border-radius: 2px;
+				-moz-box-shadow: 0 1px 0 #AAA;
+				-webkit-box-shadow: 0 1px 0 #AAA;
+				box-shadow: 0 1px 0 #AAA;
+				background:none;
+				padding:10px;
+			}
+			div#droparea.hover {
+					-moz-box-shadow: 0 0 5px #444;
+					-webkit-box-shadow: 0 0 5px #444;
+					box-shadow: 0 0 5px #444;
+			}
+			div#droparea.empty {
+				background:url(drophere.png) no-repeat center center;
+			}
 		</style>
 		
 	</head>
@@ -128,6 +150,7 @@
 			<div class="people"><div class="email">email+19@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #19</div></div>
 			<div class="people"><div class="email">email+20@gmail.com</div><img src="http://dummyimage.com/48x48/000/fff" /><div class="name">Name #20</div></div>
 		</div>
-	
+		<div id="droparea" class="empty">
+		</div>
 	</body>
 </html>

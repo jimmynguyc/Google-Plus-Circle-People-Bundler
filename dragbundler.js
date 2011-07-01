@@ -1,3 +1,14 @@
+
+function removePeople(obj){
+	jQuery(obj).parents('.selected').remove();
+	var droparea = jQuery('#droparea');
+	if(droparea.find('div.selected').length == 0){
+		droparea.addClass('empty');
+	}else{
+		droparea.removeClass('empty');
+	}
+}
+
 $(function(){
 	var currentDragPosition;
 	
@@ -10,6 +21,28 @@ $(function(){
 		helper: cloneHelper,
 		drag: bundleTogether,
 		stop: returnToPosition
+	});
+	
+	$( "#droparea" ).droppable({
+		accept: "div.people",
+		hoverClass: "hover",
+		drop: function( event, ui ) {
+			var droparea = $(this);
+			var selected = $('.people.selected:not(.clone)');
+			selected.each(function(){
+				var email = $(this).find('.email').html();
+				console.log(droparea.find('div:contains(' + email + ')').length);
+				if(droparea.find('div:contains(' + email + ')').length == 0){
+					droparea.append($('<div class="selected"></div>').html(email).append(' <a href="#" onclick="removePeople(this)">[remove]</a>'));
+				}
+			})
+			if(droparea.find('div.selected').length == 0){
+				droparea.addClass('empty');
+			}else{
+				droparea.removeClass('empty');
+			}
+			
+		}
 	});
 	
 	function startDrag(event,ui){
